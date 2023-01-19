@@ -98,6 +98,7 @@
 -- Turns column mode on but headers off
 .mode column
 .headers off
+.width 20 20 0
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
@@ -113,12 +114,12 @@ CREATE TABLE movies (
     title TEXT,
     year_released INTEGER,
     rating TEXT,
-    prod_company TEXT);
+    prod_company_id INTEGER);
 CREATE TABLE characters (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
-    movie TEXT,
-    actor TEXT,
+    movie_id INTEGER,
+    actor_id INTEGER,
     rank INTEGER);
 CREATE TABLE prod_companies (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -131,6 +132,114 @@ CREATE TABLE actors(
 -- Insert data into your database that reflects the sample data shown above
 -- Use hard-coded foreign key IDs when necessary
 -- TODO!
+INSERT INTO movies (
+    title,
+    year_released,
+    rating,
+    prod_company_id
+)
+VALUES (
+    "Batman Begins",
+    2005,
+    "PG-13",
+    1
+);
+INSERT INTO movies (
+    title,
+    year_released,
+    rating,
+    prod_company_id
+)
+VALUES (
+    "The Dark Knight",
+    2008,
+    "PG-13",
+    1
+);
+INSERT INTO movies (
+    title,
+    year_released,
+    rating,
+    prod_company_id
+)
+VALUES (
+    "The Dark Knight Rises",
+    2012,
+    "PG-13",
+    1
+);
+INSERT INTO prod_companies(
+    name
+)
+VALUES (
+    "Warner Bros."
+);
+INSERT INTO actors(
+    name
+)
+VALUES(
+    "Aaron Eckhart"
+);
+INSERT INTO actors(
+    name
+)
+VALUES(
+    "Anne Hathaway"
+);
+INSERT INTO actors(
+    name
+)
+VALUES(
+    "Christian Bale"
+);
+INSERT INTO actors(
+    name
+)
+VALUES(
+    "Gary Oldman"
+);
+INSERT INTO actors(
+    name
+)
+VALUES(
+    "Heath Ledger"
+);
+INSERT INTO actors(
+    name
+)
+VALUES(
+    "Joseph Gordon-Levitt"
+);
+INSERT INTO actors(
+    name
+)
+VALUES(
+    "Katie Holmes"
+);
+INSERT INTO actors(
+    name
+)
+VALUES(
+    "Liam Neeson"
+);
+INSERT INTO actors(
+    name
+)
+VALUES(
+    "Maggie Gyllenhaal"
+);
+INSERT INTO actors(
+    name
+)
+VALUES(
+    "Michael Caine"
+);
+INSERT INTO actors(
+    name
+)
+VALUES(
+    "Tom Hardy"
+);
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -139,6 +248,8 @@ CREATE TABLE actors(
 
 -- The SQL statement for the movies output
 -- TODO!
+SELECT movies.title, movies.year_released, movies.rating, prod_companies.name FROM movies
+INNER JOIN prod_companies ON prod_company_id = prod_companies.id;
 
 -- Prints a header for the cast output
 .print ""
@@ -149,3 +260,4 @@ CREATE TABLE actors(
 
 -- The SQL statement for the cast output
 -- TODO!
+SELECT * FROM actors;
