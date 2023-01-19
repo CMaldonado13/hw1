@@ -98,7 +98,7 @@
 -- Turns column mode on but headers off
 .mode column
 .headers off
-.width 20 20 0
+.width 30 20 20
 
 -- Drop existing tables, so you'll start fresh each time this script is run.
 -- TODO!
@@ -240,6 +240,188 @@ INSERT INTO actors(
 VALUES(
     "Tom Hardy"
 );
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "Alfred",
+    1,
+    10,
+    2
+);
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "Alfred",
+    2,
+    10,
+    4
+);
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "Bane",
+    3,
+    11,
+    3
+);
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "Bruce Wayne",
+    1,
+    3,
+    1
+);
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "Bruce Wayne",
+    2,
+    3,
+    1
+);
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "Bruce Wayne",
+    3,
+    3,
+    1
+);
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "Commisioner Gordon",
+    1,
+    4,
+    5
+);
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "Commisioner Gordon",
+    3,
+    4,
+    2
+);
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "Harvey Dent",
+    2,
+    1,
+    3
+);
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "John Blake",
+    3,
+    6,
+    4
+);
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "Joker",
+    2,
+    5,
+    2
+);
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "Rachel Dawes",
+    1,
+    7,
+    4
+);
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "Rachel Dawes",
+    2,
+    9,
+    5
+);
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "Ra's Al Ghul",
+    1,
+    8,
+    3
+);
+INSERT INTO characters(
+    name,
+    movie_id,
+    actor_id,
+    rank
+)
+VALUES (
+    "Selina Kyle",
+    3,
+    2,
+    5
+);
+
+
 
 -- Prints a header for the movies output
 .print "Movies"
@@ -249,7 +431,8 @@ VALUES(
 -- The SQL statement for the movies output
 -- TODO!
 SELECT movies.title, movies.year_released, movies.rating, prod_companies.name FROM movies
-INNER JOIN prod_companies ON prod_company_id = prod_companies.id;
+INNER JOIN prod_companies ON prod_company_id = prod_companies.id
+ORDER BY year_released ASC;
 
 -- Prints a header for the cast output
 .print ""
@@ -260,4 +443,7 @@ INNER JOIN prod_companies ON prod_company_id = prod_companies.id;
 
 -- The SQL statement for the cast output
 -- TODO!
-SELECT * FROM actors;
+SELECT movies.title, actors.name, characters.name FROM characters
+INNER JOIN actors ON actors.id = characters.actor_id
+INNER JOIN movies ON movies.id = characters.movie_id
+ORDER BY movies.year_released ASC, characters.rank ASC;
